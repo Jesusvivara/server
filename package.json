@@ -1,0 +1,15 @@
+{
+  "name": "node-test-server",
+  "version": "1.0.0",
+  "description": "este es el servidor de pruebas de node para academlo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesus Vivara",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
