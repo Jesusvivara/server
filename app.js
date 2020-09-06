@@ -1,6 +1,10 @@
 const fs = require('fs');
+const path = require('path')
+const bodyparser = require('body-parser')
+
 
 const express = require('express');
+const { ALL } = require('dns');
 
 const app = express();
 
@@ -9,11 +13,12 @@ app.listen(8000, () => {
 });
 
 app.use(express.static('public'))
+app.use(bodyparser.urlencoded())
 
-app.get('/inicio', (req, res) => {
+app.get('/', (req, res) => {
     try {
         console.log(req)
-        res.sendfile('public/login.html')
+        res.sendfile(path.join(__dirname, 'public', 'login.html'))
     } catch (error) {
         console.log(error.message)
     }
@@ -41,7 +46,7 @@ app.get('/nosotros', (req, res) => {
 app.get('/registro', (req, res) => {
     try {
         console.log(req)
-        res.sendfile('public/register.html')
+        res.sendfile(path.join(__dirname, 'public', 'register.html'))
     } catch (error) {
         console.log(error.message)
     }
@@ -50,8 +55,59 @@ app.get('/registro', (req, res) => {
 app.get('/restablecer', (req, res) => {
     try {
         console.log(req)
-        res.sendfile('public/forgot-password.html')
+        res.sendfile(path.join(__dirname, 'public', 'forgot-password.html'))
     } catch (error) {
         console.log(error.message)
     }
 });
+
+app.get('/main', (req, res) => {
+    try {
+        console.log(req)
+        res.sendFile(path.join(__dirname, 'public','/main.html'))
+    } catch (error) {
+        console.log(error.message)
+    }
+})
+
+app.post('/register', (req, res) => {
+    let name = req.body.name;
+    let lastname = req.body.lastname;
+    let email = req.body.email;
+    let password = req.body.password;
+
+    fs.readFile('db.json', (error, data) => {
+        let users = JSON.parse(data.toString())
+        users.push(req.body)
+        fs.writeFile('db.json', JSON.stringify(users), (error) => {
+            if (error) {
+                console.log(error)
+            }
+            res.redirect('/')
+        });
+        // console.log(typeof users)
+    });
+
+})
+
+app.post('/login', (req, res) => {
+    let emails = req.body.email;
+    let password = req.body.password;
+    
+
+    fs.readFile('db.json', (error, data) => {
+        let compareUsrs = { datos: JSON.parse(data.toString()) }
+        // let mails = compareUsrs.filter( compare => compare.email === emails)
+        
+
+        
+        // console.log(mails)
+        console.log(compareUsrs)
+        // console.log(email)
+        // console.log(password)
+        // if (compareUsrs === email && campareUsrs === password) {
+        //     res.redirect('/main')
+        // } res.redirect('/')
+    } )
+
+})

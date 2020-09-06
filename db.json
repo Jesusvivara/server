@@ -1,0 +1,38 @@
+[
+    {
+        "name": "daniel",
+        "lastname": "davalos",
+        "email": "davalos@gmail.com",
+        "password": "password"
+    },
+    {
+        "name": "daniel",
+        "lastname": "davalos",
+        "email": "davalos@gmail.com",
+        "password": "password"
+    },
+    {
+        "name": "jesus",
+        "lastname": "vivara",
+        "email": "jesusvivara@gmail.com",
+        "password": "jesus"
+    },
+    {
+        "name": "jesus",
+        "lastname": "vivara",
+        "email": "jesusvivara@gmail.com",
+        "password": "jesus"
+    },
+    {
+        "name": "jesus",
+        "lastname": "vivara",
+        "email": "jesusvivara@gmail.com",
+        "password": "jesus"
+    },
+    {
+        "name": "jesus",
+        "lastname": "vivara",
+        "email": "deas@gmail.com",
+        "password": "wereas"
+    }
+]
