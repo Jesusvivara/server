@@ -4,7 +4,7 @@
   "description": "este es el servidor de pruebas de node para academlo",
   "main": "app.js",
   "scripts": {
-    "start": "app.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jesus Vivara",
