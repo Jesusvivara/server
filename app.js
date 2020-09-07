@@ -64,7 +64,7 @@ app.get('/restablecer', (req, res) => {
 app.get('/main', (req, res) => {
     try {
         console.log(req)
-        res.sendFile(path.join(__dirname, 'public','/main.html'))
+        res.sendFile(path.join(__dirname, 'public', '/main.html'))
     } catch (error) {
         console.log(error.message)
     }
@@ -93,21 +93,26 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
     let emails = req.body.email;
     let password = req.body.password;
-    
+
 
     fs.readFile('db.json', (error, data) => {
-        let compareUsrs = { datos: JSON.parse(data.toString()) }
-        // let mails = compareUsrs.filter( compare => compare.email === emails)
-        
+        let compareUsrs = JSON.parse(data.toString())
+        let mails = compareUsrs.map(function (usrsEmails) {
+            return usrsEmails.email;
+        })
+        let paswords = compareUsrs.map(function (usrsPswd) {
+            return usrsPswd.password;
+        })
 
-        
-        // console.log(mails)
-        console.log(compareUsrs)
-        // console.log(email)
-        // console.log(password)
-        // if (compareUsrs === email && campareUsrs === password) {
-        //     res.redirect('/main')
-        // } res.redirect('/')
-    } )
+        let filtermail = mails.find(e => e === emails)
+        let filterPswd = paswords.find(e => e === password)
+
+        console.log(filtermail)
+        console.log(filterPswd)
+
+        if (filtermail && filterPswd) {
+            res.redirect('/main')
+        } else res.redirect('/')
+    })
 
 })
